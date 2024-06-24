@@ -36,18 +36,30 @@ const dots = document.querySelectorAll('.dot'); // variable qui me permet de cib
 let currentIndex = 0;
 
 
+// Fonction pour mettre à jour l'apparence des points indicateurs
+function updateDots(index) {
+    dots.forEach((dot, i) => { 		//Parcourt chaque point indicateur
+        if (i === index) { 			//Si l'index du point correspond à l'index du slide actuel, ajoute la classe 'dot_selected'
+            dot.classList.add('dot_selected');
+        } else {
+            dot.classList.remove('dot_selected'); // Sinon, retire la classe 'dot_selected'
+        }
+    });
+}
+
+
 // Gestionnaire d'événement pour le clic sur la flèche gauche
 	arrowLeft.addEventListener('click', function clickLeft() {
-    currentIndex = (currentIndex - 1);
-    updateCarousel(currentIndex, 'left');
-    updateDots(currentIndex); // Mettez à jour les points indicateurs
+    currentIndex = (currentIndex - 1);				// Diminue l'index actuel de 1 pour passer au slide précédent
+    updateCarousel(currentIndex, 'left');			// Appelle la fonction pour mettre à jour le carrousel avec le nouvel index
+    updateDots(currentIndex); 						// Appelle la fonction pour mettre à jour les points indicateurs avec le nouvel index
 });
 
 // Gestionnaire d'événement pour le clic sur la flèche droite
 	arrowRight.addEventListener('click', function clickRight() {
-    currentIndex = (currentIndex + 1) ;
-    updateCarousel(currentIndex, 'right');
-    updateDots(currentIndex); // Mettez à jour les points indicateurs
+    currentIndex = (currentIndex + 1) ;				// Augmente l'index actuel de 1 pour passer au slide suivant
+    updateCarousel(currentIndex, 'right');			// Appelle la fonction pour mettre à jour le carrousel avec le nouvel index
+    updateDots(currentIndex); 						// Appelle la fonction pour mettre à jour les points indicateurs avec le nouvel index
 });
 
 
@@ -75,13 +87,3 @@ let currentIndex = 0;
 
 
 
-// Fonction pour mettre à jour les points indicateurs
-	function updateDots(index) {
-    dots.forEach((dot, i) => {
-        if (i === index) {
-            dot.classList.add('dot_selected'); // Ajoutez la classe pour le point actuel
-        } else {
-            dot.classList.remove('dot_selected'); // Supprimez la classe pour les autres points
-        }
-    });
-}
