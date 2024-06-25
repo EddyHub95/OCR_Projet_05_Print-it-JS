@@ -66,22 +66,24 @@ function updateDots(index) {
 // Fonction pour mettre à jour les points indicateurs, l'image et le texte
 	function updateCarousel(index, direction) {
       //correction du bug pour la première et la dernière image
+	  //Si l'index actuel est -1 et la direction est 'left' : 
+	  //l'utilisateur a cliqué sur la flèche gauche alors qu'il était sur le premier slide. L'index est donc réglé pour afficher le dernier slide.
       if (currentIndex === -1 && direction === 'left') {
         currentIndex = slides.length - 1;
     } else if (currentIndex === slides.length && direction === 'right') {
         currentIndex = 0;
     }
 
-    // Mettre à jour l'image
-    const imagePath = `assets/images/slideshow/${slides[currentIndex].image}`;
-    bannerImg.src = imagePath;
-    bannerImg.alt = `Slide ${currentIndex + 1}`;
+    // Mise à jour de l'image
+    const imagePath = `assets/images/slideshow/${slides[currentIndex].image}`; //construit le chemin de l'image en utilisant l'index actuel.
+    bannerImg.src = imagePath;						//met à jour la source de l'image dans le carrousel.
+    bannerImg.alt = `Slide ${currentIndex + 1}`;	//met à jour le texte alternatif de l'image, ce qui est utile pour l'accessibilité.
 
-    // Mettre à jour le texte
-    const tagLine = slides[currentIndex].tagLine;
-    document.querySelector('p').innerHTML = tagLine;
+    // Mise à jour du texte
+    const tagLine = slides[currentIndex].tagLine;	//récupère le texte du slide actuel.
+    document.querySelector('p').innerHTML = tagLine;//met à jour le contenu HTML du paragraphe pour afficher la nouvelle tagline.
 
-    console.log(`Clic sur la flèche ${direction}`);
+    console.log(`Clic sur la flèche ${direction}`); //Cette ligne enregistre dans la console le fait qu'un clic a eu lieu, ainsi que la direction de ce clic.
 }
 
 
